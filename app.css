@@ -51,7 +51,7 @@ span a {
 .content {
     width: 100%;
     max-width: 600px;
-    padding: 20px 40px;
+    padding: 8px;
     box-sizing: border-box;
     text-align: center;
 }
