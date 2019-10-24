@@ -1,0 +1,91 @@
+body,
+html {
+	font-family: 'Helvetica', sans-serif;
+	overflow: hidden;
+}
+
+h1 {
+	font-size: 24px;
+	margin: 10px 0 0 0;
+	font-weight: lighter;
+	text-transform: uppercase;
+	color: #eeeeee;
+}
+
+p {
+	font-size: 12px;
+	font-weight: light;
+	color: #333333;
+}
+
+span a {
+	font-size: 18px;
+	color: #cccccc;
+	text-decoration: none;
+	margin: 0 10px;
+	transition: all 0.4s ease-in-out;
+	&:hover {
+		color: #ffffff;
+	}
+}
+
+.container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.avatar {
+	width: 180px;
+	height: 180px;
+	box-sizing: border-box;
+	border: 5px white solid;
+	border-radius: 50%;
+	overflow: hidden;
+	box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+}
+
+.content {
+	width: 100%;
+	max-width: 600px;
+	padding: 20px 40px;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.stars, .twinkling, .clouds {
+	position:absolute;
+	top:0; bottom:0;
+	left:0; right:0;
+	width:100%; height:100%;
+}
+
+.stars {
+	z-index: 0;
+	background: #000 url('https://image.ibb.co/mjnygo/stars.png') repeat top center;
+}
+
+.twinkling {
+	z-index: 1;
+	background:transparent url('https://image.ibb.co/ir1DE8/twinkling.png') repeat top center;
+	animation: move-twink-back 200s linear infinite;
+}
+
+.clouds {
+	z-index: 2;
+    background:transparent url('https://image.ibb.co/bT4N7T/clouds.png') repeat top center;
+	animation: move-clouds-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+	from {background-position:0 0;}
+	to {background-position:-10000px 5000px;}
+}
+
+@keyframes move-clouds-back {
+	from {background-position:0 0;}
+	to {background-position:10000px 0;}
+}
