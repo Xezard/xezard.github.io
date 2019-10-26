@@ -24,9 +24,6 @@ span a {
     text-decoration: none;
     margin: 0 10px;
     transition: all 0.4s ease-in-out;
-    &:hover {
-	color: #ffffff;
-    }
 }
 
 .container {
@@ -49,7 +46,7 @@ span a {
 
 img {
     width: 150px; 
-	height: 150px;
+    height: 150px;
 }
 
 .content {
