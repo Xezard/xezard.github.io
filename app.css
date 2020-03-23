@@ -1,43 +1,45 @@
-body,
-html {
-    font-family: 'Helvetica', sans-serif;
+:root {
+    --f-size: 32;
+}
+
+* {
     overflow: hidden;
 }
 
+body,
+html {
+    font-family: 'Helvetica', sans-serif;
+}
+
+body {
+    font-size: var(--f-size);
+}
+
 h1 {
-    font-size: 24px;
+    font-size: 32px;
     margin: 10px 0 0 0;
-    font-weight: lighter;
-    text-transform: uppercase;
+    font-weight: bold;
     color: #eeeeee;
 }
 
 p {
-    font-size: 12px;
-    font-weight: light;
+    font-size: 18px;
+    font-weight: lighter;
     color: #333333;
 }
 
 span a {
-    font-size: 18px;
+    font-size: 24px;
     color: #cccccc;
     text-decoration: none;
     margin: 0 10px;
     transition: all 0.4s ease-in-out;
 }
 
-.container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .avatar {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 17px;
     box-sizing: border-box;
     border: 5px white solid;
     border-radius: 50%;
@@ -45,14 +47,17 @@ span a {
 }
 
 img {
-    width: 150px; 
+    width: 150px;
     height: 150px;
 }
 
 .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
     width: 100%;
-    max-width: 600px;
-    padding: 8px;
     box-sizing: border-box;
     text-align: center;
 }
@@ -63,27 +68,27 @@ img {
 
 .stars, .twinkling, .clouds {
     position: absolute;
-    top: 0; 
+    top: 0;
     bottom: 0;
-    left: 0; 
+    left: 0;
     right: 0;
-    width: 100%; 
+    width: 100%;
     height: 100%;
 }
 
 .stars {
-    z-index: 0;
+    z-index: -3;
     background: #000 url('images/stars.png') repeat top center;
 }
 
 .twinkling {
-    z-index: 1;
+    z-index: -2;
     background: transparent url('images/twinkling.png') repeat top center;
     animation: move-twink-back 200s linear infinite;
 }
 
 .clouds {
-    z-index: 2;
+    z-index: -1;
     background:transparent url('images/clouds.png') repeat top center;
     animation: move-clouds-back 200s linear infinite;
 }
@@ -96,4 +101,151 @@ img {
 @keyframes move-clouds-back {
     from { background-position: 0 0; }
     to { background-position: 10000px 0; }
+}
+
+.glitch {
+    flex: 1;
+    line-height: 0.75;
+    margin: auto;
+    color: #ffffff;
+    text-align: center;
+    transform: scaleX(var(--scale, 1));
+    animation: glitch-p 11s infinite alternate;
+}
+
+.glitch::before, .glitch::after {
+    --top: 0;
+    --left: 0;
+    --v-height: 30%;
+    --n-tenth: calc(var(--f-size) * 0.1 * var(--top));
+    --t-cut: calc(var(--n-tenth) / var(--f-size) * 100%);
+    --b-cut: calc(var(--t-cut) + var(--v-height));
+
+    content: attr(data-text);
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    transform: translateX(calc(var(--left) * 100%));
+    filter: drop-shadow(0 0 transparent);
+    background-color: transparent;
+    text-shadow: calc(var(--left) * -3em) 0 0.02em lime, calc(var(--left) * -6em) 0 0.02em #ff00e1;
+    clip-path: polygon(0% var(--t-cut), 100% var(--t-cut), 100% var(--b-cut), 0% var(--b-cut));
+}
+
+.glitch::before {
+    animation: glitch-b 4s infinite alternate-reverse;
+}
+
+.glitch::after {
+    animation: glitch-a 3.5s infinite alternate;
+}
+
+@keyframes glitch-p {
+    17% {
+        --scale: 0.91;
+    }
+
+    31% {
+        --scale: 1.1;
+    }
+
+    37% {
+        --scale: 1.14;
+    }
+
+    47% {
+        --scale: 0.95;
+    }
+
+    87% {
+        --scale: 1;
+    }
+}
+
+@keyframes glitch-a {
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        --top: 0;
+        --left: 0;
+    }
+
+    0% {
+        --v-height: 15%;
+    }
+
+    20% {
+        --left: 0.005;
+    }
+
+    40% {
+        --left: 0.01;
+        --v-height: 20%;
+        --top: 3;
+    }
+
+    60% {
+        --left: 0.03;
+        --v-height: 25%;
+        --top: 6;
+    }
+
+    80% {
+        --left: 0.042;
+        --v-height: 5%;
+        --top: 8;
+    }
+
+    100% {
+        --left: 0.053;
+        --v-height: 30%;
+        --top: 1;
+    }
+}
+
+@keyframes glitch-b {
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        --top: 0;
+        --left: 0;
+    }
+
+    0% {
+        --v-height: 15%;
+        --top: 10;
+    }
+
+    20% {
+        --left: -0.005;
+    }
+
+    40% {
+        --left: -0.01;
+        --v-height: 17%;
+        --top: 3;
+    }
+
+    60% {
+        --left: -0.03;
+        --v-height: 35%;
+        --top: 6;
+    }
+
+    80% {
+        --left: -0.042;
+        --v-height: 5%;
+        --top: 8;
+    }
+
+    100% {
+        --left: -0.053;
+        --v-height: 30%;
+        --top: 1;
+    }
 }
