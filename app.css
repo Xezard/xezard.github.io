@@ -251,5 +251,5 @@ img {
 }
 
 @font-face {
-    font-display: fallback;
+    font-display: swap;
 }
